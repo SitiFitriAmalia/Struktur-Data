@@ -2,27 +2,95 @@
 #include <conio.h>
 using namespace std;
 
+int n;
+
+void tukar(int *a, int *b) {
+    int t = *a;
+    *a = *b;
+    *b = t;
+  }
 
 void dMenu(){
 system("cls");
-cout<<"Aplikasi Tampilan Menu"<<"\n";       
-cout<<"1. Menu Pertama"<<"\n";            
-cout<<"2. Menu Kedua"<<"\n";            
-cout<<"3. Menu Ketiga"<<"\n";           
-cout<<"4. Menu Keempat"<<"\n";            
-cout<<"5. Exit"<<"\n";           
+cout<<"Aplikasi Sorting Bubble"<<"\n";       
+cout<<"1. Masukan data"<<"\n";            
+cout<<"2. Tampilkan data"<<"\n";            
+cout<<"3. Sorting asc"<<"\n";           
+cout<<"4. Sorting dsc"<<"\n";            
+cout<<"5. Exit"<<"\n"; 
 cout<<"Masukan angka :";        
 
 }
 
-void mPertama(string pesan){
+void mPertama(string pesan, int data[]){
 system("cls");
-cout<<"hallo saya menu "<<pesan;
+    if (pesan == "pertama") {
+        cout << "Masukkan jumlah data: ";
+        cin >> n; 
+        for (int i = 0; i < n; i++) {
+            cout << "Masukkan data ke-" << (i + 1) << ": ";
+            cin >> data[i]; 
+        }
+    }
 getch();
 }
 
+void tampildata(int data[]) {
+    system("cls");
+    if (n > 0) {
+        cout << "Data yang ada:\n";
+        for (int i = 0; i < n; i++) {
+            cout << "Data ke-" << (i + 1) << ": " << data[i] << "\n";
+        }
+    } else {
+        cout << "Data kosong. Masukkan data terlebih dahulu.\n";
+    }
+    getch();
+}
+
+void sortingasc(int data[]){ 
+  system("cls");
+  if (n <= 0) {
+        cout << "Data kosong. Masukkan data terlebih dahulu.\n";
+    } else {
+        // Proses Bubble Sort
+        for (int i = 0; i < n - 1; i++) {
+            for (int j = 0; j < n - i - 1; j++) {
+                if (data[j] > data[j + 1]) { 
+                    // Tukar jika elemen saat ini lebih besar dari elemen berikutnya
+                    tukar(&data[j], &data[j + 1]);
+                }
+            }
+        }
+        cout << "Data berhasil diurutkan secara ascending.\n";
+    }
+    getch();
+  }
+
+void sortingdsc(int data[]){
+  system("cls");
+  if (n <= 0) {
+        cout << "Data kosong. Masukkan data terlebih dahulu.\n";
+    } else {
+        // Proses Bubble Sort
+        for (int i = 0; i < n - 1; i++) {
+            for (int j = 0; j < n - i - 1; j++) {
+                if (data[j] < data[j + 1]) { 
+                    // Tukar jika elemen saat ini lebih besar dari elemen berikutnya
+                    tukar(&data[j], &data[j + 1]);
+                }
+            }
+        }
+        cout << "Data berhasil diurutkan secara descending.\n";
+    }
+    getch();
+}
 
 int main() {
+
+int data[100];
+
+n = 10;
 char pl;
 do
 {
@@ -32,18 +100,18 @@ do
   {
    case '1':
     /* code */
-    mPertama("pertama");
+    mPertama("pertama", data);
     break;
    case '2':
-    mPertama("ke- dua");
+    tampildata(data);
     /* code */ 
     break;  
    case '3':
-    mPertama("ke- tiga");
+    sortingasc(data);
     /* code */
     break;  
    case '4':
-    mPertama("ke- empat");
+    sortingdsc(data);
     /* code */
     break;  
   case '5':
